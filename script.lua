@@ -6,7 +6,6 @@
 local Menu = Instance.new("ScreenGui")
 local Base = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
-local UIGradient = Instance.new("UIGradient")
 local TabBtn1 = Instance.new("TextButton")
 local UICorner_2 = Instance.new("UICorner")
 local ImageLabel = Instance.new("ImageLabel")
@@ -21,13 +20,12 @@ local Autoparry = Instance.new("TextButton")
 local UICorner_5 = Instance.new("UICorner")
 local Frame = Instance.new("Frame")
 local UICorner_6 = Instance.new("UICorner")
-local TextLabel_3 = Instance.new("TextLabel")
 local Circle = Instance.new("Frame")
 local UICorner_7 = Instance.new("UICorner")
-local TextLabel_4 = Instance.new("TextLabel")
+local TextLabel_3 = Instance.new("TextLabel")
 local Autospam = Instance.new("TextButton")
 local UICorner_8 = Instance.new("UICorner")
-local TextLabel_5 = Instance.new("TextLabel")
+local TextLabel_4 = Instance.new("TextLabel")
 local Circle_2 = Instance.new("Frame")
 local UICorner_9 = Instance.new("UICorner")
 local Frame_2 = Instance.new("Frame")
@@ -58,14 +56,9 @@ Base.Size = UDim2.new(0.519999981, 0, 0.50999999, 0)
 
 UICorner.Parent = Base
 
-UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 0, 0)), ColorSequenceKeypoint.new(0.46, Color3.fromRGB(36, 36, 36)), ColorSequenceKeypoint.new(0.52, Color3.fromRGB(67, 67, 67)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(15, 15, 15))}
-UIGradient.Rotation = 90
-UIGradient.Parent = Base
-
 TabBtn1.Name = "TabBtn1"
 TabBtn1.Parent = Base
 TabBtn1.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-TabBtn1.BackgroundTransparency = 0.300
 TabBtn1.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TabBtn1.BorderSizePixel = 0
 TabBtn1.Position = UDim2.new(0.0246710591, 0, 0.156841546, 0)
@@ -106,7 +99,6 @@ TextLabel.TextWrapped = true
 TabBtn2.Name = "TabBtn2"
 TabBtn2.Parent = Base
 TabBtn2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-TabBtn2.BackgroundTransparency = 0.300
 TabBtn2.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TabBtn2.BorderSizePixel = 0
 TabBtn2.Position = UDim2.new(0.024310939, 0, 0.266548395, 0)
@@ -147,10 +139,10 @@ TextLabel_2.TextWrapped = true
 TabFrame1.Name = "TabFrame1"
 TabFrame1.Parent = Base
 TabFrame1.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-TabFrame1.BackgroundTransparency = 1.000
+TabFrame1.BackgroundTransparency = 0.800
 TabFrame1.BorderColor3 = Color3.fromRGB(0, 0, 0)
 TabFrame1.BorderSizePixel = 0
-TabFrame1.Position = UDim2.new(0.250659019, 0, 0.16011031, 0)
+TabFrame1.Position = UDim2.new(0.253850847, 0, 0.154467776, 0)
 TabFrame1.Size = UDim2.new(0.720000029, 0, 0.779999971, 0)
 
 UICorner_4.CornerRadius = UDim.new(0, 9)
@@ -183,18 +175,6 @@ Frame.Size = UDim2.new(1, 0, 0.00999999978, 115)
 
 UICorner_6.Parent = Frame
 
-TextLabel_3.Parent = Frame
-TextLabel_3.BackgroundColor3 = Color3.fromRGB(182, 182, 182)
-TextLabel_3.BackgroundTransparency = 1.000
-TextLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_3.BorderSizePixel = 0
-TextLabel_3.Position = UDim2.new(0, 0, -0.026011914, 0)
-TextLabel_3.Size = UDim2.new(0.25999999, 0, 0.180000007, 0)
-TextLabel_3.Font = Enum.Font.SourceSansBold
-TextLabel_3.Text = "Accourancy"
-TextLabel_3.TextColor3 = Color3.fromRGB(182, 182, 182)
-TextLabel_3.TextSize = 14.000
-
 Circle.Name = "Circle"
 Circle.Parent = Autoparry
 Circle.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
@@ -206,18 +186,18 @@ Circle.Size = UDim2.new(0.0799999982, 0, 0.439999998, 0)
 UICorner_7.CornerRadius = UDim.new(0, 5)
 UICorner_7.Parent = Circle
 
-TextLabel_4.Parent = Autoparry
-TextLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_4.BackgroundTransparency = 1.000
-TextLabel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_4.BorderSizePixel = 0
-TextLabel_4.Position = UDim2.new(0.135695219, 0, 0.158246294, 0)
-TextLabel_4.Size = UDim2.new(0.460000008, 0, 0.75999999, 0)
-TextLabel_4.Font = Enum.Font.Unknown
-TextLabel_4.Text = "Auto Parry"
-TextLabel_4.TextColor3 = Color3.fromRGB(182, 182, 182)
-TextLabel_4.TextSize = 15.000
-TextLabel_4.TextStrokeColor3 = Color3.fromRGB(152, 152, 152)
+TextLabel_3.Parent = Autoparry
+TextLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_3.BackgroundTransparency = 1.000
+TextLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_3.BorderSizePixel = 0
+TextLabel_3.Position = UDim2.new(0.132711306, 0, 4.04619669e-07, 0)
+TextLabel_3.Size = UDim2.new(0.460000008, 0, 0.99000001, 0)
+TextLabel_3.Font = Enum.Font.SourceSansBold
+TextLabel_3.Text = "Auto Parry"
+TextLabel_3.TextColor3 = Color3.fromRGB(182, 182, 182)
+TextLabel_3.TextSize = 12.000
+TextLabel_3.TextStrokeColor3 = Color3.fromRGB(152, 152, 152)
 
 Autospam.Name = "Autospam"
 Autospam.Parent = TabFrame1
@@ -234,18 +214,18 @@ Autospam.TextSize = 14.000
 
 UICorner_8.Parent = Autospam
 
-TextLabel_5.Parent = Autospam
-TextLabel_5.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel_5.BackgroundTransparency = 1.000
-TextLabel_5.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextLabel_5.BorderSizePixel = 0
-TextLabel_5.Position = UDim2.new(0.261758476, 0, 0.0909834057, 0)
-TextLabel_5.Size = UDim2.new(0.460000008, 0, 0.75999999, 0)
-TextLabel_5.Font = Enum.Font.Unknown
-TextLabel_5.Text = "Auto Spam"
-TextLabel_5.TextColor3 = Color3.fromRGB(182, 182, 182)
-TextLabel_5.TextSize = 15.000
-TextLabel_5.TextStrokeColor3 = Color3.fromRGB(152, 152, 152)
+TextLabel_4.Parent = Autospam
+TextLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_4.BackgroundTransparency = 1.000
+TextLabel_4.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextLabel_4.BorderSizePixel = 0
+TextLabel_4.Position = UDim2.new(0.136592925, 0, 8.09239339e-07, 0)
+TextLabel_4.Size = UDim2.new(0.540000021, 0, 0.899999976, 0)
+TextLabel_4.Font = Enum.Font.SourceSansBold
+TextLabel_4.Text = "Auto Spam"
+TextLabel_4.TextColor3 = Color3.fromRGB(182, 182, 182)
+TextLabel_4.TextSize = 12.000
+TextLabel_4.TextStrokeColor3 = Color3.fromRGB(152, 152, 152)
 
 Circle_2.Name = "Circle"
 Circle_2.Parent = Autospam
@@ -319,7 +299,44 @@ ImageLabel_4.ImageColor3 = Color3.fromRGB(0, 0, 0)
 
 -- Scripts:
 
-local function MSBUYIO_fake_script() -- Base.Mexer 
+local function KJMUVUQ_fake_script() -- Menu.ToggleUIKeybind 
+	local script = Instance.new('LocalScript', Menu)
+
+	local UserInputService = game:GetService("UserInputService")
+	
+	-- Pega automaticamente a ScreenGui "Menu" (porque o script está dentro dela)
+	local gui = script.Parent
+	
+	-- Pega o Frame chamado "Base"
+	local frame = gui:FindFirstChild("Base")
+	
+	if not frame then
+		warn("Frame 'Base' não encontrado dentro da ScreenGui 'Menu'!")
+		return
+	end
+	
+	-- Tecla que vai abrir/fechar o menu (mude aqui se quiser outra tecla)
+	local TECLA_TOGGLE = Enum.KeyCode.G  -- Exemplos: Enum.KeyCode.F, Enum.KeyCode.H, Enum.KeyCode.Tab, etc.
+	
+	-- Começa com o menu fechado
+	local menuAberto = true
+	frame.Visible = true
+	
+	-- Detecta quando a tecla é pressionada
+	UserInputService.InputBegan:Connect(function(input, gameProcessed)
+		-- Ignora se o jogador estiver no chat ou clicando em algo que captura input
+		if gameProcessed then return end
+	
+		if input.KeyCode == TECLA_TOGGLE then
+			menuAberto = not menuAberto  -- Inverte o estado
+			frame.Visible = menuAberto
+	
+			print("Menu toggled: " .. (menuAberto and "ABERTO" or "FECHADO"))
+		end
+	end)
+end
+coroutine.wrap(KJMUVUQ_fake_script)()
+local function SRASZO_fake_script() -- Base.Mexer 
 	local script = Instance.new('LocalScript', Base)
 
 	local UserInputService = game:GetService("UserInputService")
@@ -366,8 +383,8 @@ local function MSBUYIO_fake_script() -- Base.Mexer
 	end)
 	
 end
-coroutine.wrap(MSBUYIO_fake_script)()
-local function FDMNKYW_fake_script() -- TabBtn1.LocalScript 
+coroutine.wrap(SRASZO_fake_script)()
+local function ZYYHFM_fake_script() -- TabBtn1.LocalScript 
 	local script = Instance.new('LocalScript', TabBtn1)
 
 	--Variables--
@@ -382,8 +399,8 @@ local function FDMNKYW_fake_script() -- TabBtn1.LocalScript
 	
 	end)
 end
-coroutine.wrap(FDMNKYW_fake_script)()
-local function NNSBL_fake_script() -- TabBtn2.LocalScript 
+coroutine.wrap(ZYYHFM_fake_script)()
+local function JMUVQGI_fake_script() -- TabBtn2.LocalScript 
 	local script = Instance.new('LocalScript', TabBtn2)
 
 	--Variables--
@@ -398,8 +415,8 @@ local function NNSBL_fake_script() -- TabBtn2.LocalScript
 	
 	end)
 end
-coroutine.wrap(NNSBL_fake_script)()
-local function CVVXCN_fake_script() -- Autoparry.Bola 
+coroutine.wrap(JMUVQGI_fake_script)()
+local function BLINKO_fake_script() -- Autoparry.Bola 
 	local script = Instance.new('LocalScript', Autoparry)
 
 	local button = script.Parent
@@ -426,11 +443,11 @@ local function CVVXCN_fake_script() -- Autoparry.Bola
 	
 	
 end
-coroutine.wrap(CVVXCN_fake_script)()
-local function WKXAW_fake_script() -- Autoparry.LocalScript 
+coroutine.wrap(BLINKO_fake_script)()
+local function GRFANA_fake_script() -- Autoparry.LocalScript 
 	local script = Instance.new('LocalScript', Autoparry)
 
-	-- Auto Parry para TextButton (SEM MUDANÇA DE TEXTO OU COR)
+	
 	local button = script.Parent
 	local player = game.Players.LocalPlayer
 	
@@ -460,9 +477,9 @@ local function WKXAW_fake_script() -- Autoparry.LocalScript
 			workspace:WaitForChild("Balls", 15)
 	
 			-- ✅ CONFIGS OTIMIZADAS
-			local MIN_RADIUS = 15
-			local MAX_RADIUS = 175
-			local SPEED_DIVISOR = 1.6
+			local MIN_RADIUS = 18
+			local MAX_RADIUS = 160
+			local SPEED_DIVISOR = 1.7
 			local MIN_SPEED = 5
 			local PARRY_DELAY = 0.10
 	
@@ -539,8 +556,8 @@ local function WKXAW_fake_script() -- Autoparry.LocalScript
 	
 	button.MouseButton1Click:Connect(toggleAutoParry)
 end
-coroutine.wrap(WKXAW_fake_script)()
-local function CYCQ_fake_script() -- Autospam.Bola 
+coroutine.wrap(GRFANA_fake_script)()
+local function BTEKDS_fake_script() -- Autospam.Bola 
 	local script = Instance.new('LocalScript', Autospam)
 
 	local button = script.Parent
@@ -567,8 +584,153 @@ local function CYCQ_fake_script() -- Autospam.Bola
 	
 	
 end
-coroutine.wrap(CYCQ_fake_script)()
-local function RFSXKK_fake_script() -- OpenBtn.LocalScript 
+coroutine.wrap(BTEKDS_fake_script)()
+local function VPKUBX_fake_script() -- Autospam.LocalScript 
+	local script = Instance.new('LocalScript', Autospam)
+
+	-- LocalScript dentro do TextButton (Roblox Studio) — VERSÃO LIMPA (sem mudar texto ou cor)
+	
+	local button = script.Parent  -- O TextButton onde o script está
+	
+	-- Variáveis globais
+	getgenv().AutoSpam = false
+	getgenv().LastSpam = 0
+	getgenv().LastParry = getgenv().LastParry or 0
+	getgenv().LastParryFrame = getgenv().LastParryFrame or 0
+	
+	local Players = game:GetService("Players")
+	local RunService = game:GetService("RunService")
+	local ReplicatedStorage = game:GetService("ReplicatedStorage")
+	local VirtualInputManager = game:GetService("VirtualInputManager")
+	
+	local player = Players.LocalPlayer
+	
+	-- Espera os Remotes
+	local remotes = ReplicatedStorage:WaitForChild("Remotes", 15)
+	
+	-- Auto-detecta remote de spam
+	local spamRemote = nil
+	if remotes then
+		for _, remote in pairs(remotes:GetChildren()) do
+			local name = remote.Name:lower()
+			if name:find("spam") or name:find("dash") or name:find("attack") or name:find("clash") or name:find("ability") then
+				spamRemote = remote
+				warn("Remote encontrado: " .. remote.Name)
+				break
+			end
+		end
+	end
+	
+	if not spamRemote then
+		warn("⚠️ Remote de Spam não encontrado! VIM ainda funciona.")
+	end
+	
+	-- Configs
+	local SPAM_DELAY = 0.08
+	local SPAM_DISTANCE = 50
+	
+	local SpamConnection = nil
+	
+	local function startAutoSpam()
+		if SpamConnection then return end
+	
+		warn("🔴 Auto Spam ATIVADO — Clash Mode ON!")
+	
+		SpamConnection = RunService.Heartbeat:Connect(function()
+			if not getgenv().AutoSpam then return end
+			if not getgenv().AutoParry then return end
+	
+			local character = player.Character
+			if not character then return end
+	
+			local root = character:FindFirstChild("HumanoidRootPart")
+			local humanoid = character:FindFirstChild("Humanoid")
+			if not (root and humanoid and humanoid.Health > 0) then return end
+	
+			-- Não spamar após parry recente
+			if tick() - getgenv().LastParry < 0.20 then return end
+	
+			-- Encontra a bola real
+			local BallsFolder = workspace:FindFirstChild("Balls")
+			if not BallsFolder then return end
+	
+			local realBall = nil
+			for _, obj in ipairs(BallsFolder:GetChildren()) do
+				if obj:GetAttribute("realBall") then
+					realBall = obj
+					break
+				end
+			end
+			if not realBall then return end
+	
+			-- ✅ FIX: Lida com target como STRING ou NÚMERO
+			local targetValue = realBall:GetAttribute("target")
+			if not targetValue then return end
+	
+			local targetPlayer = nil
+			if typeof(targetValue) == "number" then
+				targetPlayer = Players:GetPlayerByUserId(targetValue)
+			elseif typeof(targetValue) == "string" then
+				targetPlayer = Players:FindFirstChild(targetValue)
+			end
+	
+			if not targetPlayer or targetPlayer == player then return end
+	
+			local targetChar = targetPlayer.Character
+			if not targetChar then return end
+	
+			local targetRoot = targetChar:FindFirstChild("HumanoidRootPart")
+			if not targetRoot then return end
+	
+			local distance = (root.Position - targetRoot.Position).Magnitude
+			if distance > SPAM_DISTANCE then return end
+	
+			local now = tick()
+			if now - getgenv().LastSpam < SPAM_DELAY then return end
+	
+			local currentFrame = workspace:GetServerTimeNow()
+			if getgenv().LastParryFrame == currentFrame then return end
+	
+			getgenv().LastSpam = now
+	
+			task.spawn(function()
+				if spamRemote then
+					pcall(function()
+						spamRemote:FireServer()
+					end)
+				end
+	
+				-- VIM backup
+				VirtualInputManager:SendMouseButtonEvent(0, 0, 0, true, game, 0)
+				task.wait(0.01)
+				VirtualInputManager:SendMouseButtonEvent(0, 0, 0, false, game, 0)
+			end)
+	
+			warn("⚡ SPAM CLASH | Dist: " .. math.floor(distance))
+		end)
+	end
+	
+	local function stopAutoSpam()
+		if SpamConnection then
+			SpamConnection:Disconnect()
+			SpamConnection = nil
+		end
+		warn("❌ Auto Spam DESLIGADO")
+	end
+	
+	-- Evento do botão (só toggle da função, sem mudar visual)
+	button.MouseButton1Click:Connect(function()
+		getgenv().AutoSpam = not getgenv().AutoSpam
+	
+		if getgenv().AutoSpam then
+			startAutoSpam()
+		else
+			stopAutoSpam()
+		end
+	end)
+end
+coroutine.wrap(VPKUBX_fake_script)()
+local function RAVE_fake_script() -- OpenBtn.LocalScript 
 	local script = Instance.new('LocalScript', OpenBtn)
 
 	--Variables--
@@ -580,4 +742,4 @@ local function RFSXKK_fake_script() -- OpenBtn.LocalScript
 		f.Visible = not f.Visible
 	end)
 end
-coroutine.wrap(RFSXKK_fake_script)()
+coroutine.wrap(RAVE_fake_script)()
