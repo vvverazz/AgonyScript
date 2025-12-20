@@ -399,7 +399,7 @@ local function autoparryLogic()
     getgenv().ParryConnection = nil
     getgenv().LastParry = 0
     getgenv().LastParryFrame = 0
-    
+
     local function toggleAutoParry()
         if getgenv().AutoParry then
             getgenv().AutoParry = false
@@ -413,14 +413,14 @@ local function autoparryLogic()
             local remotes = ReplicatedStorage:WaitForChild("Remotes", 15)
             local parryRemote = remotes:WaitForChild("ParryButtonPress", 15)
             workspace:WaitForChild("Balls", 15)
-            
+
             local MIN_RADIUS = 12
             local MAX_RADIUS = 160
             local SPEED_DIVISOR = 1.7
             local MIN_SPEED = 5
             local PARRY_DELAY = 0.10
             local RunService = game:GetService("RunService")
-            
+
             getgenv().ParryConnection = RunService.Heartbeat:Connect(function()
                 if not getgenv().AutoParry then return end
                 local character = player.Character
@@ -429,7 +429,7 @@ local function autoparryLogic()
                 local humanoid = character:FindFirstChild("Humanoid")
                 if not (root and humanoid and humanoid.Health > 0) then return end
                 if not character:FindFirstChild("Highlight") then return end
-                
+
                 local BallsFolder = workspace:FindFirstChild("Balls")
                 if not BallsFolder then return end
                 local ball = nil
@@ -440,41 +440,46 @@ local function autoparryLogic()
                     end
                 end
                 if not ball then return end
-                
+
                 local target = ball:GetAttribute("target")
                 if not (target == player.Name or target == player.UserId) then return end
-                
+
                 local success, ballPos = pcall(function() return ball.Position end)
                 if not success then return end
-                
+
                 local velocity = ball.AssemblyLinearVelocity
                 local speed = velocity.Magnitude
                 if speed < MIN_SPEED then return end
-                
-                -- 🔥 FIX ANTI-AERODINÂMICO: Só 1 bola real permitida
+
+                -- FIX 1: Ignora habilidades com múltiplas bolas (ex: algumas spins)
                 local ballCount = 0
                 for _, obj in ipairs(BallsFolder:GetChildren()) do
                     if obj:GetAttribute("realBall") then
                         ballCount = ballCount + 1
                     end
                 end
-                if ballCount > 1 then return end -- Habilidade ativa = ignora
-                
+                if ballCount > 1 then return end
+
+                -- FIX 2: Ignora Corte Aerodinâmico / Tornado enquanto a bola está subindo
+                if velocity.Y > 30 then
+                    return
+                end
+
                 local distance = (root.Position - ballPos).Magnitude
                 local dynamicRadius = math.clamp((speed / SPEED_DIVISOR), MIN_RADIUS, MAX_RADIUS)
-                
+
                 if distance <= dynamicRadius then
                     local now = tick()
                     if now - getgenv().LastParry < PARRY_DELAY then return end
-                    
+
                     local dirToPlayer = (root.Position - ballPos).Unit
                     local ballDir = velocity.Unit
                     if ballDir:Dot(dirToPlayer) < 0.30 then return end
-                    
+
                     local currentFrame = workspace:GetServerTimeNow()
                     if getgenv().LastParryFrame == currentFrame then return end
                     getgenv().LastParryFrame = currentFrame
-                    
+
                     task.spawn(function()
                         pcall(function()
                             parryRemote:FireServer()
@@ -489,10 +494,11 @@ local function autoparryLogic()
             end)
         end
     end
-    
+
     button.MouseButton1Click:Connect(toggleAutoParry)
 end
 coroutine.wrap(autoparryLogic)()
+
 
 local function autospamToggleVisual()
 	local button = Autospam
