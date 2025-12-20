@@ -393,96 +393,104 @@ end
 coroutine.wrap(autoparryToggleVisual)()
 
 local function autoparryLogic()
-	local button = Autoparry
-	local player = game.Players.LocalPlayer
-	getgenv().AutoParry = false
-	getgenv().ParryConnection = nil
-	getgenv().LastParry = 0
-	getgenv().LastParryFrame = 0
-
-	local function toggleAutoParry()
-		if getgenv().AutoParry then
-			getgenv().AutoParry = false
-			if getgenv().ParryConnection then
-				getgenv().ParryConnection:Disconnect()
-				getgenv().ParryConnection = nil
-			end
-		else
-			getgenv().AutoParry = true
-
-			local ReplicatedStorage = game:GetService("ReplicatedStorage")
-			local remotes = ReplicatedStorage:WaitForChild("Remotes", 15)
-			local parryRemote = remotes:WaitForChild("ParryButtonPress", 15)
-			workspace:WaitForChild("Balls", 15)
-
-			local MIN_RADIUS = 18
-			local MAX_RADIUS = 160
-			local SPEED_DIVISOR = 1.7
-			local MIN_SPEED = 5
-			local PARRY_DELAY = 0.10
-			local RunService = game:GetService("RunService")
-
-			getgenv().ParryConnection = RunService.Heartbeat:Connect(function()
-				if not getgenv().AutoParry then return end
-				local character = player.Character
-				if not character then return end
-				local root = character:FindFirstChild("HumanoidRootPart")
-				local humanoid = character:FindFirstChild("Humanoid")
-				if not (root and humanoid and humanoid.Health > 0) then return end
-				if not character:FindFirstChild("Highlight") then return end
-
-				local BallsFolder = workspace:FindFirstChild("Balls")
-				if not BallsFolder then return end
-				local ball = nil
-				for _, obj in ipairs(BallsFolder:GetChildren()) do
-					if obj and obj:GetAttribute("realBall") then
-						ball = obj
-						break
-					end
-				end
-				if not ball then return end
-
-				local target = ball:GetAttribute("target")
-				if not (target == player.Name or target == player.UserId) then return end
-
-				local success, ballPos = pcall(function() return ball.Position end)
-				if not success then return end
-
-				local velocity = ball.AssemblyLinearVelocity
-				local speed = velocity.Magnitude
-				if speed < MIN_SPEED then return end
-
-				local distance = (root.Position - ballPos).Magnitude
-				local dynamicRadius = math.clamp((speed / SPEED_DIVISOR), MIN_RADIUS, MAX_RADIUS)
-
-				if distance <= dynamicRadius then
-					local now = tick()
-					if now - getgenv().LastParry < PARRY_DELAY then return end
-
-					local dirToPlayer = (root.Position - ballPos).Unit
-					local ballDir = velocity.Unit
-					if ballDir:Dot(dirToPlayer) < 0.30 then return end
-
-					local currentFrame = workspace:GetServerTimeNow()
-					if getgenv().LastParryFrame == currentFrame then return end
-					getgenv().LastParryFrame = currentFrame
-
-					task.spawn(function()
-						pcall(function()
-							parryRemote:FireServer()
-						end)
-						local vim = game:GetService("VirtualInputManager")
-						vim:SendMouseButtonEvent(0, 0, 0, true, game, 0)
-						task.wait(0.01)
-						vim:SendMouseButtonEvent(0, 0, 0, false, game, 0)
-					end)
-					getgenv().LastParry = now
-				end
-			end)
-		end
-	end
-
-	button.MouseButton1Click:Connect(toggleAutoParry)
+    local button = Autoparry
+    local player = game.Players.LocalPlayer
+    getgenv().AutoParry = false
+    getgenv().ParryConnection = nil
+    getgenv().LastParry = 0
+    getgenv().LastParryFrame = 0
+    
+    local function toggleAutoParry()
+        if getgenv().AutoParry then
+            getgenv().AutoParry = false
+            if getgenv().ParryConnection then
+                getgenv().ParryConnection:Disconnect()
+                getgenv().ParryConnection = nil
+            end
+        else
+            getgenv().AutoParry = true
+            local ReplicatedStorage = game:GetService("ReplicatedStorage")
+            local remotes = ReplicatedStorage:WaitForChild("Remotes", 15)
+            local parryRemote = remotes:WaitForChild("ParryButtonPress", 15)
+            workspace:WaitForChild("Balls", 15)
+            
+            local MIN_RADIUS = 12
+            local MAX_RADIUS = 160
+            local SPEED_DIVISOR = 1.7
+            local MIN_SPEED = 5
+            local PARRY_DELAY = 0.10
+            local RunService = game:GetService("RunService")
+            
+            getgenv().ParryConnection = RunService.Heartbeat:Connect(function()
+                if not getgenv().AutoParry then return end
+                local character = player.Character
+                if not character then return end
+                local root = character:FindFirstChild("HumanoidRootPart")
+                local humanoid = character:FindFirstChild("Humanoid")
+                if not (root and humanoid and humanoid.Health > 0) then return end
+                if not character:FindFirstChild("Highlight") then return end
+                
+                local BallsFolder = workspace:FindFirstChild("Balls")
+                if not BallsFolder then return end
+                local ball = nil
+                for _, obj in ipairs(BallsFolder:GetChildren()) do
+                    if obj and obj:GetAttribute("realBall") then
+                        ball = obj
+                        break
+                    end
+                end
+                if not ball then return end
+                
+                local target = ball:GetAttribute("target")
+                if not (target == player.Name or target == player.UserId) then return end
+                
+                local success, ballPos = pcall(function() return ball.Position end)
+                if not success then return end
+                
+                local velocity = ball.AssemblyLinearVelocity
+                local speed = velocity.Magnitude
+                if speed < MIN_SPEED then return end
+                
+                -- 🔥 FIX ANTI-AERODINÂMICO: Só 1 bola real permitida
+                local ballCount = 0
+                for _, obj in ipairs(BallsFolder:GetChildren()) do
+                    if obj:GetAttribute("realBall") then
+                        ballCount = ballCount + 1
+                    end
+                end
+                if ballCount > 1 then return end -- Habilidade ativa = ignora
+                
+                local distance = (root.Position - ballPos).Magnitude
+                local dynamicRadius = math.clamp((speed / SPEED_DIVISOR), MIN_RADIUS, MAX_RADIUS)
+                
+                if distance <= dynamicRadius then
+                    local now = tick()
+                    if now - getgenv().LastParry < PARRY_DELAY then return end
+                    
+                    local dirToPlayer = (root.Position - ballPos).Unit
+                    local ballDir = velocity.Unit
+                    if ballDir:Dot(dirToPlayer) < 0.30 then return end
+                    
+                    local currentFrame = workspace:GetServerTimeNow()
+                    if getgenv().LastParryFrame == currentFrame then return end
+                    getgenv().LastParryFrame = currentFrame
+                    
+                    task.spawn(function()
+                        pcall(function()
+                            parryRemote:FireServer()
+                        end)
+                        local vim = game:GetService("VirtualInputManager")
+                        vim:SendMouseButtonEvent(0, 0, 0, true, game, 0)
+                        task.wait(0.01)
+                        vim:SendMouseButtonEvent(0, 0, 0, false, game, 0)
+                    end)
+                    getgenv().LastParry = now
+                end
+            end)
+        end
+    end
+    
+    button.MouseButton1Click:Connect(toggleAutoParry)
 end
 coroutine.wrap(autoparryLogic)()
 
