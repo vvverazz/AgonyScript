@@ -414,11 +414,11 @@ local function autoparryLogic()
             local parryRemote = remotes:WaitForChild("ParryButtonPress", 15)
             workspace:WaitForChild("Balls", 15)
 
-            local MIN_RADIUS = 12
-            local MAX_RADIUS = 160
-            local SPEED_DIVISOR = 1.7
-            local MIN_SPEED = 5
-            local PARRY_DELAY = 0.10
+            local MIN_RADIUS = 15
+            local MAX_RADIUS = 200
+            local SPEED_DIVISOR = 1.4
+            local MIN_SPEED = 4
+            local PARRY_DELAY = 0.06
             local RunService = game:GetService("RunService")
 
             getgenv().ParryConnection = RunService.Heartbeat:Connect(function()
