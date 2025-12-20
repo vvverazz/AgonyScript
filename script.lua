@@ -1,6 +1,5 @@
 -- Gui to Lua
 -- Version: 3.2
-
 -- Instances:
 
 local Menu = Instance.new("ScreenGui")
@@ -299,54 +298,33 @@ ImageLabel_4.ImageColor3 = Color3.fromRGB(0, 0, 0)
 
 -- Scripts:
 
-local function KJMUVUQ_fake_script() -- Menu.ToggleUIKeybind 
-	local script = Instance.new('LocalScript', Menu)
-
+local function toggleUI()
 	local UserInputService = game:GetService("UserInputService")
-	
-	-- Pega automaticamente a ScreenGui "Menu" (porque o script está dentro dela)
-	local gui = script.Parent
-	
-	-- Pega o Frame chamado "Base"
+	local gui = Menu
 	local frame = gui:FindFirstChild("Base")
-	
-	if not frame then
-		warn("Frame 'Base' não encontrado dentro da ScreenGui 'Menu'!")
-		return
-	end
-	
-	-- Tecla que vai abrir/fechar o menu (mude aqui se quiser outra tecla)
-	local TECLA_TOGGLE = Enum.KeyCode.G  -- Exemplos: Enum.KeyCode.F, Enum.KeyCode.H, Enum.KeyCode.Tab, etc.
-	
-	-- Começa com o menu fechado
+	if not frame then return end
+
+	local TECLA_TOGGLE = Enum.KeyCode.G
 	local menuAberto = true
 	frame.Visible = true
-	
-	-- Detecta quando a tecla é pressionada
+
 	UserInputService.InputBegan:Connect(function(input, gameProcessed)
-		-- Ignora se o jogador estiver no chat ou clicando em algo que captura input
 		if gameProcessed then return end
-	
 		if input.KeyCode == TECLA_TOGGLE then
-			menuAberto = not menuAberto  -- Inverte o estado
+			menuAberto = not menuAberto
 			frame.Visible = menuAberto
-	
-			print("Menu toggled: " .. (menuAberto and "ABERTO" or "FECHADO"))
 		end
 	end)
 end
-coroutine.wrap(KJMUVUQ_fake_script)()
-local function SRASZO_fake_script() -- Base.Mexer 
-	local script = Instance.new('LocalScript', Base)
+coroutine.wrap(toggleUI)()
 
+local function makeDraggable()
 	local UserInputService = game:GetService("UserInputService")
-	
-	local frame = script.Parent
-	
+	local frame = Base
 	local dragging = false
 	local dragStart
 	local startPos
-	
+
 	local function update(input)
 		local delta = input.Position - dragStart
 		frame.Position = UDim2.new(
@@ -356,15 +334,13 @@ local function SRASZO_fake_script() -- Base.Mexer
 			startPos.Y.Offset + delta.Y
 		)
 	end
-	
+
 	frame.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1
-			or input.UserInputType == Enum.UserInputType.Touch then
-	
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 			dragging = true
 			dragStart = input.Position
 			startPos = frame.Position
-	
+
 			input.Changed:Connect(function()
 				if input.UserInputState == Enum.UserInputState.End then
 					dragging = false
@@ -372,288 +348,204 @@ local function SRASZO_fake_script() -- Base.Mexer
 			end)
 		end
 	end)
-	
+
 	frame.InputChanged:Connect(function(input)
-		if dragging then
-			if input.UserInputType == Enum.UserInputType.MouseMovement
-				or input.UserInputType == Enum.UserInputType.Touch then
-				update(input)
-			end
+		if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
+			update(input)
 		end
 	end)
-	
 end
-coroutine.wrap(SRASZO_fake_script)()
-local function ZYYHFM_fake_script() -- TabBtn1.LocalScript 
-	local script = Instance.new('LocalScript', TabBtn1)
+coroutine.wrap(makeDraggable)()
 
-	--Variables--
-	local a = script.Parent
-	local one = script.Parent.Parent.TabFrame1
-	local two = script.Parent.Parent.TabFrame2
-	
-	--Code--
-	a.MouseButton1Click:Connect(function()
+local function tab1Switch()
+	local one = Base.TabFrame1
+	local two = Base.TabFrame2
+	TabBtn1.MouseButton1Click:Connect(function()
 		one.Visible = true
 		two.Visible = false
-	
 	end)
 end
-coroutine.wrap(ZYYHFM_fake_script)()
-local function JMUVQGI_fake_script() -- TabBtn2.LocalScript 
-	local script = Instance.new('LocalScript', TabBtn2)
+coroutine.wrap(tab1Switch)()
 
-	--Variables--
-	local a = script.Parent
-	local one = script.Parent.Parent.TabFrame1
-	local two = script.Parent.Parent.TabFrame2
-	
-	--Code--
-	a.MouseButton1Click:Connect(function()
+local function tab2Switch()
+	local one = Base.TabFrame1
+	local two = Base.TabFrame2
+	TabBtn2.MouseButton1Click:Connect(function()
 		one.Visible = false
 		two.Visible = true
-	
 	end)
 end
-coroutine.wrap(JMUVQGI_fake_script)()
-local function BLINKO_fake_script() -- Autoparry.Bola 
-	local script = Instance.new('LocalScript', Autoparry)
+coroutine.wrap(tab2Switch)()
 
-	local button = script.Parent
+local function autoparryToggleVisual()
+	local button = Autoparry
 	local circle = button:WaitForChild("Circle")
-	
-	local enabled = false -- começa desligado
-	
-	-- cores
-	local ON_COLOR = Color3.fromRGB(244, 244, 244)   -- branco
-	local OFF_COLOR = Color3.fromRGB(15, 15, 15) -- off
-	
-	-- FORÇA o estado inicial
+	local enabled = false
+	local ON_COLOR = Color3.fromRGB(244, 244, 244)
+	local OFF_COLOR = Color3.fromRGB(15, 15, 15)
 	circle.BackgroundColor3 = OFF_COLOR
-	
+
 	button.MouseButton1Click:Connect(function()
 		enabled = not enabled
-	
-		if enabled then
-			circle.BackgroundColor3 = ON_COLOR
-		else
-			circle.BackgroundColor3 = OFF_COLOR
-		end
+		circle.BackgroundColor3 = enabled and ON_COLOR or OFF_COLOR
 	end)
-	
-	
 end
-coroutine.wrap(BLINKO_fake_script)()
-local function GRFANA_fake_script() -- Autoparry.LocalScript 
-	local script = Instance.new('LocalScript', Autoparry)
+coroutine.wrap(autoparryToggleVisual)()
 
-	
-	local button = script.Parent
+local function autoparryLogic()
+	local button = Autoparry
 	local player = game.Players.LocalPlayer
-	
 	getgenv().AutoParry = false
 	getgenv().ParryConnection = nil
 	getgenv().LastParry = 0
 	getgenv().LastParryFrame = 0
-	
+
 	local function toggleAutoParry()
 		if getgenv().AutoParry then
-			-- DESLIGA
 			getgenv().AutoParry = false
 			if getgenv().ParryConnection then
 				getgenv().ParryConnection:Disconnect()
 				getgenv().ParryConnection = nil
 			end
-			-- Removido: mudança de texto, cor e warn visível
 		else
-			-- LIGA
 			getgenv().AutoParry = true
-			warn("🔵 Auto Parry ATIVADO!")  -- Só deixa esse warn pra você saber que ligou
-	
-			-- ✅ CARREGA REMOTES
+
 			local ReplicatedStorage = game:GetService("ReplicatedStorage")
 			local remotes = ReplicatedStorage:WaitForChild("Remotes", 15)
 			local parryRemote = remotes:WaitForChild("ParryButtonPress", 15)
 			workspace:WaitForChild("Balls", 15)
-	
-			-- ✅ CONFIGS OTIMIZADAS
+
 			local MIN_RADIUS = 18
 			local MAX_RADIUS = 160
 			local SPEED_DIVISOR = 1.7
 			local MIN_SPEED = 5
 			local PARRY_DELAY = 0.10
-	
 			local RunService = game:GetService("RunService")
-	
+
 			getgenv().ParryConnection = RunService.Heartbeat:Connect(function()
 				if not getgenv().AutoParry then return end
-	
 				local character = player.Character
 				if not character then return end
-	
 				local root = character:FindFirstChild("HumanoidRootPart")
 				local humanoid = character:FindFirstChild("Humanoid")
 				if not (root and humanoid and humanoid.Health > 0) then return end
-	
 				if not character:FindFirstChild("Highlight") then return end
-	
-				local ball = nil
+
 				local BallsFolder = workspace:FindFirstChild("Balls")
-				if BallsFolder then
-					for _, obj in ipairs(BallsFolder:GetChildren()) do
-						if obj and obj:GetAttribute("realBall") then
-							ball = obj
-							break
-						end
+				if not BallsFolder then return end
+				local ball = nil
+				for _, obj in ipairs(BallsFolder:GetChildren()) do
+					if obj and obj:GetAttribute("realBall") then
+						ball = obj
+						break
 					end
 				end
-	
 				if not ball then return end
-	
+
 				local target = ball:GetAttribute("target")
 				if not (target == player.Name or target == player.UserId) then return end
-	
+
 				local success, ballPos = pcall(function() return ball.Position end)
 				if not success then return end
-	
+
 				local velocity = ball.AssemblyLinearVelocity
 				local speed = velocity.Magnitude
 				if speed < MIN_SPEED then return end
-	
+
 				local distance = (root.Position - ballPos).Magnitude
 				local dynamicRadius = math.clamp((speed / SPEED_DIVISOR), MIN_RADIUS, MAX_RADIUS)
-	
+
 				if distance <= dynamicRadius then
 					local now = tick()
 					if now - getgenv().LastParry < PARRY_DELAY then return end
-	
+
 					local dirToPlayer = (root.Position - ballPos).Unit
 					local ballDir = velocity.Unit
 					if ballDir:Dot(dirToPlayer) < 0.30 then return end
-	
+
 					local currentFrame = workspace:GetServerTimeNow()
 					if getgenv().LastParryFrame == currentFrame then return end
 					getgenv().LastParryFrame = currentFrame
-	
-					-- ✅ PARRY + VIM
+
 					task.spawn(function()
 						pcall(function()
 							parryRemote:FireServer()
 						end)
-	
 						local vim = game:GetService("VirtualInputManager")
 						vim:SendMouseButtonEvent(0, 0, 0, true, game, 0)
 						task.wait(0.01)
 						vim:SendMouseButtonEvent(0, 0, 0, false, game, 0)
 					end)
-	
 					getgenv().LastParry = now
-					warn("💥 Parry | Dist: " .. math.floor(distance) .. " | Speed: " .. math.floor(speed))
 				end
 			end)
 		end
 	end
-	
+
 	button.MouseButton1Click:Connect(toggleAutoParry)
 end
-coroutine.wrap(GRFANA_fake_script)()
-local function BTEKDS_fake_script() -- Autospam.Bola 
-	local script = Instance.new('LocalScript', Autospam)
+coroutine.wrap(autoparryLogic)()
 
-	local button = script.Parent
+local function autospamToggleVisual()
+	local button = Autospam
 	local circle = button:WaitForChild("Circle")
-	
-	local enabled = false -- começa desligado
-	
-	-- cores
-	local ON_COLOR = Color3.fromRGB(244, 244, 244)   -- branco
-	local OFF_COLOR = Color3.fromRGB(15, 15, 15) -- off
-	
-	-- FORÇA o estado inicial
+	local enabled = false
+	local ON_COLOR = Color3.fromRGB(244, 244, 244)
+	local OFF_COLOR = Color3.fromRGB(15, 15, 15)
 	circle.BackgroundColor3 = OFF_COLOR
-	
+
 	button.MouseButton1Click:Connect(function()
 		enabled = not enabled
-	
-		if enabled then
-			circle.BackgroundColor3 = ON_COLOR
-		else
-			circle.BackgroundColor3 = OFF_COLOR
-		end
+		circle.BackgroundColor3 = enabled and ON_COLOR or OFF_COLOR
 	end)
-	
-	
 end
-coroutine.wrap(BTEKDS_fake_script)()
-local function VPKUBX_fake_script() -- Autospam.LocalScript 
-	local script = Instance.new('LocalScript', Autospam)
+coroutine.wrap(autospamToggleVisual)()
 
-	-- LocalScript dentro do TextButton (Roblox Studio) — VERSÃO LIMPA (sem mudar texto ou cor)
-	
-	local button = script.Parent  -- O TextButton onde o script está
-	
-	-- Variáveis globais
+local function autospamLogic()
+	local button = Autospam
 	getgenv().AutoSpam = false
 	getgenv().LastSpam = 0
 	getgenv().LastParry = getgenv().LastParry or 0
 	getgenv().LastParryFrame = getgenv().LastParryFrame or 0
-	
+
 	local Players = game:GetService("Players")
 	local RunService = game:GetService("RunService")
 	local ReplicatedStorage = game:GetService("ReplicatedStorage")
 	local VirtualInputManager = game:GetService("VirtualInputManager")
-	
 	local player = Players.LocalPlayer
-	
-	-- Espera os Remotes
+
 	local remotes = ReplicatedStorage:WaitForChild("Remotes", 15)
-	
-	-- Auto-detecta remote de spam
 	local spamRemote = nil
 	if remotes then
 		for _, remote in pairs(remotes:GetChildren()) do
 			local name = remote.Name:lower()
 			if name:find("spam") or name:find("dash") or name:find("attack") or name:find("clash") or name:find("ability") then
 				spamRemote = remote
-				warn("Remote encontrado: " .. remote.Name)
 				break
 			end
 		end
 	end
-	
-	if not spamRemote then
-		warn("⚠️ Remote de Spam não encontrado! VIM ainda funciona.")
-	end
-	
-	-- Configs
+
 	local SPAM_DELAY = 0.08
 	local SPAM_DISTANCE = 50
-	
 	local SpamConnection = nil
-	
+
 	local function startAutoSpam()
 		if SpamConnection then return end
-	
-		warn("🔴 Auto Spam ATIVADO — Clash Mode ON!")
-	
 		SpamConnection = RunService.Heartbeat:Connect(function()
 			if not getgenv().AutoSpam then return end
 			if not getgenv().AutoParry then return end
-	
+
 			local character = player.Character
 			if not character then return end
-	
 			local root = character:FindFirstChild("HumanoidRootPart")
 			local humanoid = character:FindFirstChild("Humanoid")
 			if not (root and humanoid and humanoid.Health > 0) then return end
-	
-			-- Não spamar após parry recente
+
 			if tick() - getgenv().LastParry < 0.20 then return end
-	
-			-- Encontra a bola real
+
 			local BallsFolder = workspace:FindFirstChild("Balls")
 			if not BallsFolder then return end
-	
 			local realBall = nil
 			for _, obj in ipairs(BallsFolder:GetChildren()) do
 				if obj:GetAttribute("realBall") then
@@ -662,66 +554,55 @@ local function VPKUBX_fake_script() -- Autospam.LocalScript
 				end
 			end
 			if not realBall then return end
-	
-			-- ✅ FIX: Lida com target como STRING ou NÚMERO
+
 			local targetValue = realBall:GetAttribute("target")
 			if not targetValue then return end
-	
+
 			local targetPlayer = nil
 			if typeof(targetValue) == "number" then
 				targetPlayer = Players:GetPlayerByUserId(targetValue)
 			elseif typeof(targetValue) == "string" then
 				targetPlayer = Players:FindFirstChild(targetValue)
 			end
-	
 			if not targetPlayer or targetPlayer == player then return end
-	
+
 			local targetChar = targetPlayer.Character
 			if not targetChar then return end
-	
 			local targetRoot = targetChar:FindFirstChild("HumanoidRootPart")
 			if not targetRoot then return end
-	
+
 			local distance = (root.Position - targetRoot.Position).Magnitude
 			if distance > SPAM_DISTANCE then return end
-	
+
 			local now = tick()
 			if now - getgenv().LastSpam < SPAM_DELAY then return end
-	
+
 			local currentFrame = workspace:GetServerTimeNow()
 			if getgenv().LastParryFrame == currentFrame then return end
-	
 			getgenv().LastSpam = now
-	
+
 			task.spawn(function()
 				if spamRemote then
 					pcall(function()
 						spamRemote:FireServer()
 					end)
 				end
-	
-				-- VIM backup
 				VirtualInputManager:SendMouseButtonEvent(0, 0, 0, true, game, 0)
 				task.wait(0.01)
 				VirtualInputManager:SendMouseButtonEvent(0, 0, 0, false, game, 0)
 			end)
-	
-			warn("⚡ SPAM CLASH | Dist: " .. math.floor(distance))
 		end)
 	end
-	
+
 	local function stopAutoSpam()
 		if SpamConnection then
 			SpamConnection:Disconnect()
 			SpamConnection = nil
 		end
-		warn("❌ Auto Spam DESLIGADO")
 	end
-	
-	-- Evento do botão (só toggle da função, sem mudar visual)
+
 	button.MouseButton1Click:Connect(function()
 		getgenv().AutoSpam = not getgenv().AutoSpam
-	
 		if getgenv().AutoSpam then
 			startAutoSpam()
 		else
@@ -729,17 +610,12 @@ local function VPKUBX_fake_script() -- Autospam.LocalScript
 		end
 	end)
 end
-coroutine.wrap(VPKUBX_fake_script)()
-local function RAVE_fake_script() -- OpenBtn.LocalScript 
-	local script = Instance.new('LocalScript', OpenBtn)
+coroutine.wrap(autospamLogic)()
 
-	--Variables--
-	local a = script.Parent
-	local f = script.Parent.Parent.Base
-	
-	--Code--
-	a.MouseButton1Click:Connect(function()
+local function openButton()
+	local f = Menu.Base
+	OpenBtn.MouseButton1Click:Connect(function()
 		f.Visible = not f.Visible
 	end)
 end
-coroutine.wrap(RAVE_fake_script)()
+coroutine.wrap(openButton)()
