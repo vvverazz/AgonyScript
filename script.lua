@@ -526,7 +526,7 @@ local function autospamLogic()
 	end
 
 	local SPAM_DELAY = 0.08  -- velocidade do spam
-	local MAX_DISTANCE = 35  -- distância máxima pra considerar clash
+	local MAX_DISTANCE = 12  -- distância máxima pra considerar clash
 
 	local SpamConnection = nil
 
