@@ -505,8 +505,6 @@ local function autospamLogic()
 	local button = Autospam
 	getgenv().AutoSpam = false
 	getgenv().LastSpam = 0
-	getgenv().LastParry = getgenv().LastParry or 0
-	getgenv().LastParryFrame = getgenv().LastParryFrame or 0
 
 	local Players = game:GetService("Players")
 	local RunService = game:GetService("RunService")
@@ -514,6 +512,7 @@ local function autospamLogic()
 	local VirtualInputManager = game:GetService("VirtualInputManager")
 	local player = Players.LocalPlayer
 
+	-- Tenta encontrar o remote de clash/spam/dash
 	local remotes = ReplicatedStorage:WaitForChild("Remotes", 15)
 	local spamRemote = nil
 	if remotes then
@@ -526,59 +525,48 @@ local function autospamLogic()
 		end
 	end
 
-	local SPAM_DELAY = 0.08
-	local SPAM_DISTANCE = 50
+	local SPAM_DELAY = 0.08  -- velocidade do spam
+	local MAX_DISTANCE = 35  -- distância máxima pra considerar clash
+
 	local SpamConnection = nil
+
+	local function isInClash()
+		local character = player.Character
+		if not character then return false end
+		local root = character:FindFirstChild("HumanoidRootPart")
+		if not root then return false end
+
+		-- Verifica se o jogador tem o Highlight (sinal claro de clash)
+		if not character:FindFirstChild("Highlight") then return false end
+
+		-- Procura o inimigo mais próximo com Highlight também
+		for _, otherPlayer in ipairs(Players:GetPlayers()) do
+			if otherPlayer ~= player and otherPlayer.Character then
+				local otherRoot = otherPlayer.Character:FindFirstChild("HumanoidRootPart")
+				local otherHighlight = otherPlayer.Character:FindFirstChild("Highlight")
+				if otherRoot and otherHighlight then
+					local dist = (root.Position - otherRoot.Position).Magnitude
+					if dist <= MAX_DISTANCE then
+						return true
+					end
+				end
+			end
+		end
+		return false
+	end
 
 	local function startAutoSpam()
 		if SpamConnection then return end
+
 		SpamConnection = RunService.Heartbeat:Connect(function()
 			if not getgenv().AutoSpam then return end
-			if not getgenv().AutoParry then return end
 
-			local character = player.Character
-			if not character then return end
-			local root = character:FindFirstChild("HumanoidRootPart")
-			local humanoid = character:FindFirstChild("Humanoid")
-			if not (root and humanoid and humanoid.Health > 0) then return end
-
-			if tick() - getgenv().LastParry < 0.20 then return end
-
-			local BallsFolder = workspace:FindFirstChild("Balls")
-			if not BallsFolder then return end
-			local realBall = nil
-			for _, obj in ipairs(BallsFolder:GetChildren()) do
-				if obj:GetAttribute("realBall") then
-					realBall = obj
-					break
-				end
-			end
-			if not realBall then return end
-
-			local targetValue = realBall:GetAttribute("target")
-			if not targetValue then return end
-
-			local targetPlayer = nil
-			if typeof(targetValue) == "number" then
-				targetPlayer = Players:GetPlayerByUserId(targetValue)
-			elseif typeof(targetValue) == "string" then
-				targetPlayer = Players:FindFirstChild(targetValue)
-			end
-			if not targetPlayer or targetPlayer == player then return end
-
-			local targetChar = targetPlayer.Character
-			if not targetChar then return end
-			local targetRoot = targetChar:FindFirstChild("HumanoidRootPart")
-			if not targetRoot then return end
-
-			local distance = (root.Position - targetRoot.Position).Magnitude
-			if distance > SPAM_DISTANCE then return end
+			-- Só spamma se estiver realmente em clash
+			if not isInClash() then return end
 
 			local now = tick()
 			if now - getgenv().LastSpam < SPAM_DELAY then return end
 
-			local currentFrame = workspace:GetServerTimeNow()
-			if getgenv().LastParryFrame == currentFrame then return end
 			getgenv().LastSpam = now
 
 			task.spawn(function()
@@ -587,6 +575,7 @@ local function autospamLogic()
 						spamRemote:FireServer()
 					end)
 				end
+				-- VIM como backup
 				VirtualInputManager:SendMouseButtonEvent(0, 0, 0, true, game, 0)
 				task.wait(0.01)
 				VirtualInputManager:SendMouseButtonEvent(0, 0, 0, false, game, 0)
@@ -611,11 +600,3 @@ local function autospamLogic()
 	end)
 end
 coroutine.wrap(autospamLogic)()
-
-local function openButton()
-	local f = Menu.Base
-	OpenBtn.MouseButton1Click:Connect(function()
-		f.Visible = not f.Visible
-	end)
-end
-coroutine.wrap(openButton)()
