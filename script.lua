@@ -444,11 +444,11 @@ local function KUUQO_fake_script() -- Autoparry.Autoparry (CORRIGIDO AQUI)
     local remotes = ReplicatedStorage:WaitForChild("Remotes", 15)
     local parryRemote = remotes and remotes:WaitForChild("ParryButtonPress", 15)
 
-    local MIN_RADIUS = 15
-    local MAX_RADIUS = 200
-    local SPEED_DIVISOR = 1.4
-    local MIN_SPEED = 4
-    local PARRY_DELAY = 0.06
+    local MIN_RADIUS = 12
+    local MAX_RADIUS = 160
+    local SPEED_DIVISOR = 1.7
+    local MIN_SPEED = 5
+    local PARRY_DELAY = 0.10
 
     local function toggleAutoParry()
         if getgenv().AutoParry then
