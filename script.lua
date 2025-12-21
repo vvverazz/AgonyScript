@@ -1,7 +1,7 @@
 -- Gui to Lua
 -- Version: 3.2
--- Instances:
 
+-- Instances:
 local Menu = Instance.new("ScreenGui")
 local Base = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -17,7 +17,7 @@ local TabFrame1 = Instance.new("Frame")
 local UICorner_4 = Instance.new("UICorner")
 local Autoparry = Instance.new("TextButton")
 local UICorner_5 = Instance.new("UICorner")
-local Frame = Instance.new("Frame")
+local menu = Instance.new("Frame")
 local UICorner_6 = Instance.new("UICorner")
 local Circle = Instance.new("Frame")
 local UICorner_7 = Instance.new("UICorner")
@@ -27,17 +27,18 @@ local UICorner_8 = Instance.new("UICorner")
 local TextLabel_4 = Instance.new("TextLabel")
 local Circle_2 = Instance.new("Frame")
 local UICorner_9 = Instance.new("UICorner")
-local Frame_2 = Instance.new("Frame")
+local menu_2 = Instance.new("Frame")
 local UICorner_10 = Instance.new("UICorner")
+local Frame = Instance.new("Frame")
+local UICorner_11 = Instance.new("UICorner")
 local ImageLabel_3 = Instance.new("ImageLabel")
 local TabFrame2 = Instance.new("Frame")
-local UICorner_11 = Instance.new("UICorner")
-local OpenBtn = Instance.new("TextButton")
 local UICorner_12 = Instance.new("UICorner")
+local OpenBtn = Instance.new("TextButton")
+local UICorner_13 = Instance.new("UICorner")
 local ImageLabel_4 = Instance.new("ImageLabel")
 
 --Properties:
-
 Menu.Name = "Menu"
 Menu.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 Menu.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -164,15 +165,17 @@ Autoparry.TextSize = 14.000
 UICorner_5.CornerRadius = UDim.new(0, 5)
 UICorner_5.Parent = Autoparry
 
-Frame.Parent = Autoparry
-Frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-Frame.BackgroundTransparency = 0.800
-Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Frame.BorderSizePixel = 0
-Frame.Position = UDim2.new(0, 0, 0.999934018, 0)
-Frame.Size = UDim2.new(1, 0, 0.00999999978, 115)
+menu.Name = "menu"
+menu.Parent = Autoparry
+menu.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+menu.BackgroundTransparency = 0.800
+menu.BorderColor3 = Color3.fromRGB(0, 0, 0)
+menu.BorderSizePixel = 0
+menu.Position = UDim2.new(0, 0, 0.999934137, 0)
+menu.Size = UDim2.new(1, 0, 0.00999999978, 0)
+menu.Visible = false
 
-UICorner_6.Parent = Frame
+UICorner_6.Parent = menu
 
 Circle.Name = "Circle"
 Circle.Parent = Autoparry
@@ -237,17 +240,29 @@ Circle_2.Size = UDim2.new(0.0799999982, 0, 0.439999998, 0)
 UICorner_9.CornerRadius = UDim.new(0, 5)
 UICorner_9.Parent = Circle_2
 
-Frame_2.Parent = Base
-Frame_2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-Frame_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Frame_2.BorderSizePixel = 0
-Frame_2.Position = UDim2.new(0.0244893003, 0, 0.0436757468, 0)
-Frame_2.Size = UDim2.new(0.949999988, 0, 0.0900000036, 0)
+menu_2.Name = "menu"
+menu_2.Parent = Autospam
+menu_2.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+menu_2.BackgroundTransparency = 0.800
+menu_2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+menu_2.BorderSizePixel = 0
+menu_2.Position = UDim2.new(0, 0, 0.999934137, 0)
+menu_2.Size = UDim2.new(1, 0, 0.00999999978, 0)
+menu_2.Visible = false
 
-UICorner_10.CornerRadius = UDim.new(0, 9)
-UICorner_10.Parent = Frame_2
+UICorner_10.Parent = menu_2
 
-ImageLabel_3.Parent = Frame_2
+Frame.Parent = Base
+Frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.0244893003, 0, 0.0436757468, 0)
+Frame.Size = UDim2.new(0.949999988, 0, 0.0900000036, 0)
+
+UICorner_11.CornerRadius = UDim.new(0, 9)
+UICorner_11.Parent = Frame
+
+ImageLabel_3.Parent = Frame
 ImageLabel_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 ImageLabel_3.BorderColor3 = Color3.fromRGB(0, 0, 0)
 ImageLabel_3.BorderSizePixel = 0
@@ -265,8 +280,8 @@ TabFrame2.Position = UDim2.new(0.250659019, 0, 0.16011031, 0)
 TabFrame2.Size = UDim2.new(0.720000029, 0, 0.779999971, 0)
 TabFrame2.Visible = false
 
-UICorner_11.CornerRadius = UDim.new(0, 9)
-UICorner_11.Parent = TabFrame2
+UICorner_12.CornerRadius = UDim.new(0, 9)
+UICorner_12.Parent = TabFrame2
 
 OpenBtn.Name = "OpenBtn"
 OpenBtn.Parent = Menu
@@ -283,8 +298,8 @@ OpenBtn.TextScaled = true
 OpenBtn.TextSize = 14.000
 OpenBtn.TextWrapped = true
 
-UICorner_12.CornerRadius = UDim.new(1, 0)
-UICorner_12.Parent = OpenBtn
+UICorner_13.CornerRadius = UDim.new(1, 0)
+UICorner_13.Parent = OpenBtn
 
 ImageLabel_4.Parent = OpenBtn
 ImageLabel_4.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
@@ -298,107 +313,142 @@ ImageLabel_4.ImageColor3 = Color3.fromRGB(0, 0, 0)
 
 -- Scripts:
 
-local function toggleUI()
-	local UserInputService = game:GetService("UserInputService")
-	local gui = Menu
-	local frame = gui:FindFirstChild("Base")
-	if not frame then return end
-
-	local TECLA_TOGGLE = Enum.KeyCode.G
-	local menuAberto = true
-	frame.Visible = true
-
-	UserInputService.InputBegan:Connect(function(input, gameProcessed)
-		if gameProcessed then return end
-		if input.KeyCode == TECLA_TOGGLE then
-			menuAberto = not menuAberto
-			frame.Visible = menuAberto
-		end
-	end)
+local function PWQBQ_fake_script() -- Menu.ToggleUIKeybind
+    local script = Instance.new('LocalScript', Menu)
+    local UserInputService = game:GetService("UserInputService")
+    
+    local gui = script.Parent
+    local frame = gui:FindFirstChild("Base")
+    
+    if not frame then
+        warn("Frame 'Base' não encontrado dentro da ScreenGui 'Menu'!")
+        return
+    end
+    
+    local TECLA_TOGGLE = Enum.KeyCode.G
+    
+    local menuAberto = true
+    frame.Visible = true
+    
+    UserInputService.InputBegan:Connect(function(input, gameProcessed)
+        if gameProcessed then return end
+        if input.KeyCode == TECLA_TOGGLE then
+            menuAberto = not menuAberto
+            frame.Visible = menuAberto
+            print("Menu toggled: " .. (menuAberto and "ABERTO" or "FECHADO"))
+        end
+    end)
 end
-coroutine.wrap(toggleUI)()
+coroutine.wrap(PWQBQ_fake_script)()
 
-local function makeDraggable()
-	local UserInputService = game:GetService("UserInputService")
-	local frame = Base
-	local dragging = false
-	local dragStart
-	local startPos
-
-	local function update(input)
-		local delta = input.Position - dragStart
-		frame.Position = UDim2.new(
-			startPos.X.Scale,
-			startPos.X.Offset + delta.X,
-			startPos.Y.Scale,
-			startPos.Y.Offset + delta.Y
-		)
-	end
-
-	frame.InputBegan:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-			dragging = true
-			dragStart = input.Position
-			startPos = frame.Position
-
-			input.Changed:Connect(function()
-				if input.UserInputState == Enum.UserInputState.End then
-					dragging = false
-				end
-			end)
-		end
-	end)
-
-	frame.InputChanged:Connect(function(input)
-		if dragging and (input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch) then
-			update(input)
-		end
-	end)
+local function IZKP_fake_script() -- Base.Mexer
+    local script = Instance.new('LocalScript', Base)
+    local UserInputService = game:GetService("UserInputService")
+    
+    local frame = script.Parent
+    local dragging = false
+    local dragStart
+    local startPos
+    
+    local function update(input)
+        local delta = input.Position - dragStart
+        frame.Position = UDim2.new(
+            startPos.X.Scale,
+            startPos.X.Offset + delta.X,
+            startPos.Y.Scale,
+            startPos.Y.Offset + delta.Y
+        )
+    end
+    
+    frame.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+            dragging = true
+            dragStart = input.Position
+            startPos = frame.Position
+            
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragging = false
+                end
+            end)
+        end
+    end)
+    
+    frame.InputChanged:Connect(function(input)
+        if dragging then
+            if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+                update(input)
+            end
+        end
+    end)
 end
-coroutine.wrap(makeDraggable)()
+coroutine.wrap(IZKP_fake_script)()
 
-local function tab1Switch()
-	local one = Base.TabFrame1
-	local two = Base.TabFrame2
-	TabBtn1.MouseButton1Click:Connect(function()
-		one.Visible = true
-		two.Visible = false
-	end)
+local function RDNTKS_fake_script() -- TabBtn1.LocalScript
+    local script = Instance.new('LocalScript', TabBtn1)
+    local a = script.Parent
+    local one = script.Parent.Parent.TabFrame1
+    local two = script.Parent.Parent.TabFrame2
+    
+    a.MouseButton1Click:Connect(function()
+        one.Visible = true
+        two.Visible = false
+    end)
 end
-coroutine.wrap(tab1Switch)()
+coroutine.wrap(RDNTKS_fake_script)()
 
-local function tab2Switch()
-	local one = Base.TabFrame1
-	local two = Base.TabFrame2
-	TabBtn2.MouseButton1Click:Connect(function()
-		one.Visible = false
-		two.Visible = true
-	end)
+local function XZQV_fake_script() -- TabBtn2.LocalScript
+    local script = Instance.new('LocalScript', TabBtn2)
+    local a = script.Parent
+    local one = script.Parent.Parent.TabFrame1
+    local two = script.Parent.Parent.TabFrame2
+    
+    a.MouseButton1Click:Connect(function()
+        one.Visible = false
+        two.Visible = true
+    end)
 end
-coroutine.wrap(tab2Switch)()
+coroutine.wrap(XZQV_fake_script)()
 
-local function autoparryToggleVisual()
-	local button = Autoparry
-	local circle = button:WaitForChild("Circle")
-	local enabled = false
-	local ON_COLOR = Color3.fromRGB(244, 244, 244)
-	local OFF_COLOR = Color3.fromRGB(15, 15, 15)
-	circle.BackgroundColor3 = OFF_COLOR
-
-	button.MouseButton1Click:Connect(function()
-		enabled = not enabled
-		circle.BackgroundColor3 = enabled and ON_COLOR or OFF_COLOR
-	end)
+local function NXXBD_fake_script() -- Autoparry.Bola
+    local script = Instance.new('LocalScript', Autoparry)
+    local button = script.Parent
+    local circle = button:WaitForChild("Circle")
+    
+    local enabled = false
+    local ON_COLOR = Color3.fromRGB(244, 244, 244)
+    local OFF_COLOR = Color3.fromRGB(15, 15, 15)
+    
+    circle.BackgroundColor3 = OFF_COLOR
+    
+    button.MouseButton1Click:Connect(function()
+        enabled = not enabled
+        circle.BackgroundColor3 = enabled and ON_COLOR or OFF_COLOR
+    end)
 end
-coroutine.wrap(autoparryToggleVisual)()
+coroutine.wrap(NXXBD_fake_script)()
 
-local function autoparryLogic()
-    local button = Autoparry
-    local player = game.Players.LocalPlayer
+local function KUUQO_fake_script() -- Autoparry.Autoparry (CORRIGIDO AQUI)
+    local script = Instance.new('LocalScript', Autoparry)
+
     getgenv().AutoParry = false
     getgenv().ParryConnection = nil
     getgenv().LastParry = 0
     getgenv().LastParryFrame = 0
+
+    local player = game.Players.LocalPlayer
+    local ReplicatedStorage = game:GetService("ReplicatedStorage")
+    local RunService = game:GetService("RunService")
+    local VirtualInputManager = game:GetService("VirtualInputManager")
+
+    local remotes = ReplicatedStorage:WaitForChild("Remotes", 15)
+    local parryRemote = remotes and remotes:WaitForChild("ParryButtonPress", 15)
+
+    local MIN_RADIUS = 15
+    local MAX_RADIUS = 200
+    local SPEED_DIVISOR = 1.4
+    local MIN_SPEED = 4
+    local PARRY_DELAY = 0.06
 
     local function toggleAutoParry()
         if getgenv().AutoParry then
@@ -409,20 +459,10 @@ local function autoparryLogic()
             end
         else
             getgenv().AutoParry = true
-            local ReplicatedStorage = game:GetService("ReplicatedStorage")
-            local remotes = ReplicatedStorage:WaitForChild("Remotes", 15)
-            local parryRemote = remotes:WaitForChild("ParryButtonPress", 15)
-            workspace:WaitForChild("Balls", 15)
-
-            local MIN_RADIUS = 15
-            local MAX_RADIUS = 200
-            local SPEED_DIVISOR = 1.4
-            local MIN_SPEED = 4
-            local PARRY_DELAY = 0.06
-            local RunService = game:GetService("RunService")
 
             getgenv().ParryConnection = RunService.Heartbeat:Connect(function()
                 if not getgenv().AutoParry then return end
+
                 local character = player.Character
                 if not character then return end
                 local root = character:FindFirstChild("HumanoidRootPart")
@@ -432,6 +472,7 @@ local function autoparryLogic()
 
                 local BallsFolder = workspace:FindFirstChild("Balls")
                 if not BallsFolder then return end
+
                 local ball = nil
                 for _, obj in ipairs(BallsFolder:GetChildren()) do
                     if obj and obj:GetAttribute("realBall") then
@@ -451,7 +492,7 @@ local function autoparryLogic()
                 local speed = velocity.Magnitude
                 if speed < MIN_SPEED then return end
 
-                -- FIX 1: Ignora habilidades com múltiplas bolas (ex: algumas spins)
+                -- Ignora habilidades com múltiplas bolas
                 local ballCount = 0
                 for _, obj in ipairs(BallsFolder:GetChildren()) do
                     if obj:GetAttribute("realBall") then
@@ -460,10 +501,8 @@ local function autoparryLogic()
                 end
                 if ballCount > 1 then return end
 
-                -- FIX 2: Ignora Corte Aerodinâmico / Tornado enquanto a bola está subindo
-                if velocity.Y > 30 then
-                    return
-                end
+                -- Ignora habilidades que sobem muito
+                if velocity.Y > 30 then return end
 
                 local distance = (root.Position - ballPos).Magnitude
                 local dynamicRadius = math.clamp((speed / SPEED_DIVISOR), MIN_RADIUS, MAX_RADIUS)
@@ -482,12 +521,11 @@ local function autoparryLogic()
 
                     task.spawn(function()
                         pcall(function()
-                            parryRemote:FireServer()
+                            if parryRemote then parryRemote:FireServer() end
                         end)
-                        local vim = game:GetService("VirtualInputManager")
-                        vim:SendMouseButtonEvent(0, 0, 0, true, game, 0)
+                        VirtualInputManager:SendMouseButtonEvent(0, 0, 0, true, game, 0)
                         task.wait(0.01)
-                        vim:SendMouseButtonEvent(0, 0, 0, false, game, 0)
+                        VirtualInputManager:SendMouseButtonEvent(0, 0, 0, false, game, 0)
                     end)
                     getgenv().LastParry = now
                 end
@@ -495,122 +533,178 @@ local function autoparryLogic()
         end
     end
 
-    button.MouseButton1Click:Connect(toggleAutoParry)
+    script.Parent.MouseButton1Click:Connect(toggleAutoParry)
 end
-coroutine.wrap(autoparryLogic)()
+coroutine.wrap(KUUQO_fake_script)()
 
+local function OHMU_fake_script() -- Autoparry.LocalScript (Tween)
+    local script = Instance.new('LocalScript', Autoparry)
+    local tweenService = game:GetService("TweenService")
+    local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
 
-local function autospamToggleVisual()
-	local button = Autospam
-	local circle = button:WaitForChild("Circle")
-	local enabled = false
-	local ON_COLOR = Color3.fromRGB(244, 244, 244)
-	local OFF_COLOR = Color3.fromRGB(15, 15, 15)
-	circle.BackgroundColor3 = OFF_COLOR
+    local open = false
+    local menu = script.Parent:WaitForChild("menu")
 
-	button.MouseButton1Click:Connect(function()
-		enabled = not enabled
-		circle.BackgroundColor3 = enabled and ON_COLOR or OFF_COLOR
-	end)
+    local openTween = tweenService:Create(menu, tweenInfo, {Size = UDim2.new(1, 0, 0.01, 115)})
+    local closeTween = tweenService:Create(menu, tweenInfo, {Size = UDim2.new(1, 0, 0.01, 0)})
+
+    script.Parent.MouseButton1Click:Connect(function()
+        if not open then
+            menu.Visible = true
+            openTween:Play()
+            open = true
+        else
+            closeTween:Play()
+            closeTween.Completed:Wait()
+            menu.Visible = false
+            open = false
+        end
+    end)
 end
-coroutine.wrap(autospamToggleVisual)()
+coroutine.wrap(OHMU_fake_script)()
 
-local function autospamLogic()
-	local button = Autospam
-	getgenv().AutoSpam = false
-	getgenv().LastSpam = 0
-
-	local Players = game:GetService("Players")
-	local RunService = game:GetService("RunService")
-	local ReplicatedStorage = game:GetService("ReplicatedStorage")
-	local VirtualInputManager = game:GetService("VirtualInputManager")
-	local player = Players.LocalPlayer
-
-	-- Tenta encontrar o remote de clash/spam/dash
-	local remotes = ReplicatedStorage:WaitForChild("Remotes", 15)
-	local spamRemote = nil
-	if remotes then
-		for _, remote in pairs(remotes:GetChildren()) do
-			local name = remote.Name:lower()
-			if name:find("spam") or name:find("dash") or name:find("attack") or name:find("clash") or name:find("ability") then
-				spamRemote = remote
-				break
-			end
-		end
-	end
-
-	local SPAM_DELAY = 0.08  -- velocidade do spam
-	local MAX_DISTANCE = 12  -- distância máxima pra considerar clash
-
-	local SpamConnection = nil
-
-	local function isInClash()
-		local character = player.Character
-		if not character then return false end
-		local root = character:FindFirstChild("HumanoidRootPart")
-		if not root then return false end
-
-		-- Verifica se o jogador tem o Highlight (sinal claro de clash)
-		if not character:FindFirstChild("Highlight") then return false end
-
-		-- Procura o inimigo mais próximo com Highlight também
-		for _, otherPlayer in ipairs(Players:GetPlayers()) do
-			if otherPlayer ~= player and otherPlayer.Character then
-				local otherRoot = otherPlayer.Character:FindFirstChild("HumanoidRootPart")
-				local otherHighlight = otherPlayer.Character:FindFirstChild("Highlight")
-				if otherRoot and otherHighlight then
-					local dist = (root.Position - otherRoot.Position).Magnitude
-					if dist <= MAX_DISTANCE then
-						return true
-					end
-				end
-			end
-		end
-		return false
-	end
-
-	local function startAutoSpam()
-		if SpamConnection then return end
-
-		SpamConnection = RunService.Heartbeat:Connect(function()
-			if not getgenv().AutoSpam then return end
-
-			-- Só spamma se estiver realmente em clash
-			if not isInClash() then return end
-
-			local now = tick()
-			if now - getgenv().LastSpam < SPAM_DELAY then return end
-
-			getgenv().LastSpam = now
-
-			task.spawn(function()
-				if spamRemote then
-					pcall(function()
-						spamRemote:FireServer()
-					end)
-				end
-				-- VIM como backup
-				VirtualInputManager:SendMouseButtonEvent(0, 0, 0, true, game, 0)
-				task.wait(0.01)
-				VirtualInputManager:SendMouseButtonEvent(0, 0, 0, false, game, 0)
-			end)
-		end)
-	end
-
-	local function stopAutoSpam()
-		if SpamConnection then
-			SpamConnection:Disconnect()
-			SpamConnection = nil
-		end
-	end
-
-	button.MouseButton1Click:Connect(function()
-		getgenv().AutoSpam = not getgenv().AutoSpam
-		if getgenv().AutoSpam then
-			startAutoSpam()
-		else
-			stopAutoSpam()
-		end
-	end)
+local function OMKZSH_fake_script() -- Autospam.Bola
+    local script = Instance.new('LocalScript', Autospam)
+    local button = script.Parent
+    local circle = button:WaitForChild("Circle")
+    
+    local enabled = false
+    local ON_COLOR = Color3.fromRGB(244, 244, 244)
+    local OFF_COLOR = Color3.fromRGB(15, 15, 15)
+    
+    circle.BackgroundColor3 = OFF_COLOR
+    
+    button.MouseButton1Click:Connect(function()
+        enabled = not enabled
+        circle.BackgroundColor3 = enabled and ON_COLOR or OFF_COLOR
+    end)
 end
-coroutine.wrap(autospamLogic)()
+coroutine.wrap(OMKZSH_fake_script)()
+
+local function PRPBCW_fake_script() -- Autospam.Autospam
+    local script = Instance.new('LocalScript', Autospam)
+
+    getgenv().AutoSpam = false
+    getgenv().LastSpam = 0
+
+    local Players = game:GetService("Players")
+    local RunService = game:GetService("RunService")
+    local ReplicatedStorage = game:GetService("ReplicatedStorage")
+    local VirtualInputManager = game:GetService("VirtualInputManager")
+    local player = Players.LocalPlayer
+
+    local remotes = ReplicatedStorage:WaitForChild("Remotes", 15)
+    local spamRemote = nil
+    if remotes then
+        for _, remote in pairs(remotes:GetChildren()) do
+            local name = remote.Name:lower()
+            if name:find("spam") or name:find("dash") or name:find("attack") or name:find("clash") or name:find("ability") then
+                spamRemote = remote
+                break
+            end
+        end
+    end
+
+    local SPAM_DELAY = 0.08
+    local MAX_DISTANCE = 12
+    local SpamConnection = nil
+
+    local function isInClash()
+        local character = player.Character
+        if not character then return false end
+        local root = character:FindFirstChild("HumanoidRootPart")
+        if not root then return false end
+        if not character:FindFirstChild("Highlight") then return false end
+
+        for _, otherPlayer in ipairs(Players:GetPlayers()) do
+            if otherPlayer ~= player and otherPlayer.Character then
+                local otherRoot = otherPlayer.Character:FindFirstChild("HumanoidRootPart")
+                local otherHighlight = otherPlayer.Character:FindFirstChild("Highlight")
+                if otherRoot and otherHighlight then
+                    local dist = (root.Position - otherRoot.Position).Magnitude
+                    if dist <= MAX_DISTANCE then
+                        return true
+                    end
+                end
+            end
+        end
+        return false
+    end
+
+    local function startAutoSpam()
+        if SpamConnection then return end
+        SpamConnection = RunService.Heartbeat:Connect(function()
+            if not getgenv().AutoSpam then return end
+            if not isInClash() then return end
+
+            local now = tick()
+            if now - getgenv().LastSpam < SPAM_DELAY then return end
+            getgenv().LastSpam = now
+
+            task.spawn(function()
+                if spamRemote then
+                    pcall(function()
+                        spamRemote:FireServer()
+                    end)
+                end
+                VirtualInputManager:SendMouseButtonEvent(0, 0, 0, true, game, 0)
+                task.wait(0.01)
+                VirtualInputManager:SendMouseButtonEvent(0, 0, 0, false, game, 0)
+            end)
+        end)
+    end
+
+    local function stopAutoSpam()
+        if SpamConnection then
+            SpamConnection:Disconnect()
+            SpamConnection = nil
+        end
+    end
+
+    script.Parent.MouseButton1Click:Connect(function()
+        getgenv().AutoSpam = not getgenv().AutoSpam
+        if getgenv().AutoSpam then
+            startAutoSpam()
+        else
+            stopAutoSpam()
+        end
+    end)
+end
+coroutine.wrap(PRPBCW_fake_script)()
+
+local function CNAUZ_fake_script() -- Autospam.LocalScript (Tween)
+    local script = Instance.new('LocalScript', Autospam)
+    local tweenService = game:GetService("TweenService")
+    local tweenInfo = TweenInfo.new(0.3, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+
+    local open = false
+    local menu = script.Parent:WaitForChild("menu")
+
+    local openTween = tweenService:Create(menu, tweenInfo, {Size = UDim2.new(1, 0, 0.01, 115)})
+    local closeTween = tweenService:Create(menu, tweenInfo, {Size = UDim2.new(1, 0, 0.01, 0)})
+
+    script.Parent.MouseButton1Click:Connect(function()
+        if not open then
+            menu.Visible = true
+            openTween:Play()
+            open = true
+        else
+            closeTween:Play()
+            closeTween.Completed:Wait()
+            menu.Visible = false
+            open = false
+        end
+    end)
+end
+coroutine.wrap(CNAUZ_fake_script)()
+
+local function TGMAF_fake_script() -- OpenBtn.LocalScript
+    local script = Instance.new('LocalScript', OpenBtn)
+    local a = script.Parent
+    local f = script.Parent.Parent.Base
+    
+    a.MouseButton1Click:Connect(function()
+        f.Visible = not f.Visible
+    end)
+end
+coroutine.wrap(TGMAF_fake_script)()
